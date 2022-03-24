@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheduledTasks xmlns="http://xmlns.oracle.com/oim/scheduler">
+    <task>
+        <name>Check All the Info of an Extern</name>
+        <class>entel.oim.plugins.scheduler.CheckInfoExternTask</class>
+        <description>Task that executes the check of the info of an extern</description>
+        <retry>5</retry>
+    </task>
+</scheduledTasks>

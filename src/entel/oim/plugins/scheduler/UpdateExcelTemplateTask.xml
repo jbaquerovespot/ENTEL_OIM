@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheduledTasks xmlns="http://xmlns.oracle.com/oim/scheduler">
+    <task>
+        <name>Update Excel Template Task</name>
+        <class>entel.oim.plugins.scheduler.UpdateExcelTemplateTask</class>
+        <description>Task that executes the update of the excel template for creation of users</description>
+        <retry>5</retry>
+        <parameters>
+            <string-param required="true" encrypted="false" helpText="Template File">Template File</string-param>
+            <string-param required="true" encrypted="false" helpText="Key">Key</string-param>
+        </parameters>
+    </task>
+</scheduledTasks>

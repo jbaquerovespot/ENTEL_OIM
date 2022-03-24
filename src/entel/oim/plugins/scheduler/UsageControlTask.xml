@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheduledTasks xmlns="http://xmlns.oracle.com/oim/scheduler">
+    <task>
+        <name>Usage Control of Users Accounts</name>
+        <class>entel.oim.plugins.scheduler.UsageControlTask</class>
+        <description>Task that executes the usage control of OIM users and their accounts</description>
+        <retry>5</retry>
+        <parameters>
+            <string-param required="true" encrypted="false" helpText="Inactive Days of the accounts">Inactive Days</string-param>
+            <string-param required="true" encrypted="false" helpText="Accounts to control">Accounts</string-param>
+            <string-param required="true" encrypted="false" helpText="Days to wait for delete users">Disable Days</string-param>
+            <string-param required="false" encrypted="false" helpText="Filter RUT">Filter RUT</string-param>
+        </parameters>
+    </task>
+</scheduledTasks>

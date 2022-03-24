@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheduledTasks xmlns="http://xmlns.oracle.com/oim/scheduler">
+    <task>
+        <name>Move Disabled Active Directory Accounts</name>
+        <class>entel.oim.plugins.scheduler.MoveDisabledADUsersTask</class>
+        <description>Task that executes the move of the AD accounts for disabled users</description>
+        <retry>5</retry>
+        <parameters>
+            <string-param required="true" encrypted="false" helpText="Active Directory App Instance Name">Active Directory App Instance Name</string-param>
+            <string-param required="true" encrypted="false" helpText="Lookup">Lookup</string-param>
+            <string-param required="true" encrypted="false" helpText="Organizational Unit">Organizational Unit</string-param>
+        </parameters>
+    </task>
+</scheduledTasks>

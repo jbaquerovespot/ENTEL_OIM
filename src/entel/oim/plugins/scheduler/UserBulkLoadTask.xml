@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheduledTasks xmlns="http://xmlns.oracle.com/oim/scheduler">
+    <task>
+        <name>User Bulk Load Task</name>
+        <class>entel.oim.plugins.scheduler.UserBulkLoadTask</class>
+        <description>Task that creates users / provisions resources using a CSV File</description>
+        <retry>1</retry>
+        <parameters>
+            <string-param required="true" encrypted="false" helpText="Users File Directory">Users File Directory</string-param>
+            <string-param required="true" encrypted="false" helpText="Key">Key</string-param>
+            <string-param required="true" encrypted="false" helpText="Template Folder">Template Folder</string-param>
+        </parameters>
+    </task>
+</scheduledTasks>

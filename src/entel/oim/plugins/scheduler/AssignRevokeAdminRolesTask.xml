@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheduledTasks xmlns="http://xmlns.oracle.com/oim/scheduler">
+    <task>
+        <name>Synchronize Custom Admin Roles Entel Task</name>
+        <class>entel.oim.plugins.scheduler.AssignRevokeAdminRolesTask</class>
+        <description>Task that executes the synchronization of custom roles with the admin roles</description>
+        <retry>0</retry>
+        <parameters>
+            <string-param required="true" encrypted="false" helpText="Roles Mapping">Roles Mapping</string-param>
+        </parameters>
+    </task>
+</scheduledTasks>

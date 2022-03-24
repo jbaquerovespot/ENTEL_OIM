@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheduledTasks xmlns="http://xmlns.oracle.com/oim/scheduler">
+    <task>
+        <name>SuccessFactors Custom Lookups Reconciliation</name>
+        <class>entel.oim.plugins.scheduler.CustomLookupsSuccessFactorsReconciliationTask</class>
+        <description>Task that executes the custom lookups from Success Factors</description>
+        <retry>5</retry>
+        <parameters>
+            <string-param required="true" encrypted="false" helpText="IT Resource Name">IT Resource Name</string-param>
+            <string-param required="true" encrypted="false" helpText="Service from Success Factors">Service</string-param>
+            <string-param required="true" encrypted="false" helpText="Lookup Definition Code">Lookup Definition</string-param>
+        </parameters>
+    </task>
+</scheduledTasks>

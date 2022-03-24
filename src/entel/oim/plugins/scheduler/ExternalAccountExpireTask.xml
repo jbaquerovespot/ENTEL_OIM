@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheduledTasks xmlns="http://xmlns.oracle.com/oim/scheduler">
+    <task>
+        <name>External Accounts about to Expire</name>
+        <class>entel.oim.plugins.scheduler.ExternalAccountExpireTask</class>
+        <description>Task that checks if an external account is about to expire</description>
+        <retry>5</retry>
+        <parameters>
+            <string-param required="true" encrypted="false" helpText="Expiration Days">Expiration Days</string-param>
+        </parameters>
+    </task>
+</scheduledTasks>

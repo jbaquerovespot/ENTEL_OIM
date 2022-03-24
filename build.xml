@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="EntelOIM" default="main" basedir=".">
+
+	<property name="build.dir" value="build" />
+	<property name="src.dir" value="src"/>
+	<property name="classes.dir" value="bin" />
+	<property name="lib.dir" value="lib" />
+	<property name="transform.package" value="entel/oim/transformations" />
+	<property name="jar.dir" value="${build.dir}/jar" />
+	<property name="transform.class.dir" value="${classes.dir}/${transform.package}" />
+	<property name="validation.package" value="entel/oim/validations" />
+	<property name="validation.class.dir" value="${classes.dir}/${validation.package}" />
+	<property name="plugin.package" value="entel/oim/plugins" />
+	<property name="plugin.dir" value="${src.dir}/${plugin.package}"/>
+	<property name="plugin.class.dir" value="${classes.dir}/${plugin.package}" />
+	<property name="connector.utility.package" value="entel/oim/connectors/utilities" />
+	<property name="connector.utility.class.dir" value="${classes.dir}/${connector.utility.package}" />
+	<property name="connector.sga.package" value="entel/oim/connectors/sga" />
+	<property name="connector.sga.class.dir" value="${classes.dir}/${connector.sga.package}" />
+	<property name="connector.sau.package" value="entel/oim/connectors/sau" />
+	<property name="connector.sau.class.dir" value="${classes.dir}/${connector.sau.package}" />
+	<property name="connector.lync.package" value="entel/oim/connectors/lync" />
+	<property name="connector.lync.class.dir" value="${classes.dir}/${connector.lync.package}" />
+	<property name="connector.ssff.package" value="entel/oim/connectors/ssff" />
+	<property name="connector.ssff.class.dir" value="${classes.dir}/${connector.ssff.package}" />
+	<property name="adapters.package" value="entel/oim/adapters" />
+	<property name="adapters.class.dir" value="${classes.dir}/${adapters.package}" />
+	<property name="eventhandler.package" value="${plugin.package}/eventhandler" />
+	<property name="eventhandler.class.dir" value="${classes.dir}/${eventhandler.package}" />
+	<property name="namegenerator.package" value="${plugin.package}/namegenerator" />
+	<property name="namegenerator.class.dir" value="${classes.dir}/${namegenerator.package}" />
+
+	<target name="clean">
+		<delete includeEmptyDirs="true">
+		  <fileset dir="${build.dir}" includes="**/*"/>
+		</delete>
+	</target>
+	
+	<target name="compile">
+	    <path id="plugin-classpath">
+        	<fileset dir="lib">
+        		<include name="*.jar"/>
+        	    <include name="**/*.jar"/>
+            </fileset>
+	    	
+        </path>
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="src" destdir="${classes.dir}" target="1.8" source="1.8" encoding="ISO-8859-1" >
+            <classpath refid="plugin-classpath"/>
+        </javac>
+    </target>
+
+	<target name="jar-transform" description="Create a jar for Transformations for the EntelOIM project" depends="compile">
+		<jar jarfile="${build.dir}/TransformsEntel.jar">
+			<zipfileset dir="${transform.class.dir}" includes="**/*.class" excludes="**/*.xml" prefix="${transform.package}" />
+			<zipfileset dir="${namegenerator.class.dir}" includes="**/*.class"  excludes="**/*.xml" prefix="${namegenerator.package}"/>
+			<zipfileset dir="${adapters.class.dir}" includes="**/Utilities.class" excludes="**/*.xml" prefix="${adapters.package}" />
+		</jar>
+	</target>
+
+	<target name="jar-validation" description="Create a jar for Validations for the EntelOIM project" depends="compile">
+		<jar jarfile="${build.dir}/ValidationsEntel.jar">
+			<zipfileset dir="${validation.class.dir}" includes="**/*.class" excludes="**/*.xml" prefix="${validation.package}" />
+		</jar>
+	</target>
+
+	<!--<target name="jar-utility" description="Create a jar for Utilities for the EntelOIM project" depends="compile">
+		<jar jarfile="${build.dir}/UtilitiesEntel.jar">
+			<zipfileset dir="${connector.utility.class.dir}" includes="**/*.class" excludes="**/*.xml" prefix="${connector.utility.package}" />
+		</jar>
+	</target>
+-->
+	<target name="jar-adapters" description="Create a jar for Adapters for the EntelOIM project" depends="compile">
+		<jar jarfile="${build.dir}/AdaptersEntel.jar">
+			<zipfileset dir="${adapters.class.dir}" includes="**/*.class" excludes="**/*.xml" prefix="${adapters.package}" />
+			<zipfileset dir="${connector.utility.class.dir}" includes="**/*.class" excludes="**/*.xml" prefix="${connector.utility.package}" />
+		</jar>
+	</target>
+
+	<target name="jar-plugins" description="Create a jar for Plugins for the EntelOIM project" depends="compile">
+        <jar jarfile="${jar.dir}/PluginEntel.jar">
+            <zipfileset dir="${plugin.class.dir}" 
+                        includes="**/*.class" 
+                        excludes="**/*.xml" 
+                        prefix="${plugin.package}"/>
+        	<zipfileset dir="${connector.utility.class.dir}" 
+        	                        includes="**/*.class" 
+        	                        excludes="**/*.xml" 
+        	                        prefix="${connector.utility.package}"/>
+        	<zipfileset dir="${adapters.class.dir}" 
+        	        	                        includes="Utilities.class" 
+        	        	                        excludes="**/*.xml" 
+        	        	                        prefix="${adapters.package}"/>
+        </jar>
+    </target>
+
+    <target name="archive-plugins" depends="jar-plugins">
+        <zip destfile="${build.dir}/PluginEntel.zip" update="true">
+            <zipfileset dir="${jar.dir}" includes="*.jar" prefix="lib" />
+        	<zipfileset dir="${plugin.dir}" includes="plugin.xml"/>
+            <zipfileset dir="${plugin.dir}/eventhandler" includes="*.xml" prefix="META-INF"/>
+        	<zipfileset dir="${plugin.dir}/scheduler" includes="*.xml" prefix="META-INF"/>
+        	<zipfileset dir="${plugin.dir}/validator" includes="*.xml" prefix="META-INF"/>
+        	<zipfileset dir="${plugin.dir}/validator" includes="*.xml" prefix="META-INF"/>
+        	<zipfileset dir="${plugin.dir}/notifications" includes="*.xml" prefix="META-INF"/>
+        </zip>
+    </target>
+
+	<target name="sga" description="Create a jar for operations for the SGA connector for the EntelOIM project" depends="compile">
+		<jar jarfile="${build.dir}/ConnectorSGA.jar">
+			<zipfileset dir="${connector.sga.class.dir}" includes="**/*.class" excludes="**/*.xml" prefix="${connector.sga.package}" />
+		</jar>
+	</target>
+
+	<target name="sau" description="Create a jar for operations for the SAU connector for the EntelOIM project" depends="compile">
+		<jar jarfile="${build.dir}/ConnectorSAU.jar">
+			<zipfileset dir="${connector.sau.class.dir}" includes="**/*.class" excludes="**/*.xml" prefix="${connector.sau.package}" />
+		</jar>
+	</target>
+	
+	<target name="lync" description="Create a jar for operations for the Lync connector for the EntelOIM project" depends="compile">
+		<jar jarfile="${build.dir}/ConnectorLync.jar">
+			<zipfileset dir="${connector.lync.class.dir}" includes="**/*.class" excludes="**/*.xml" prefix="${connector.lync.package}" />
+		</jar>
+	</target>
+	
+	<target name="ssff" description="Create a jar for operations for the Candidate SSFF connector for the EntelOIM project" depends="compile">
+			<jar jarfile="${build.dir}/ConnectorSSFF.jar">
+				<zipfileset dir="${connector.ssff.class.dir}" includes="**/*.class" excludes="**/*.xml" prefix="${connector.ssff.package}" />
+				<zipfileset dir="${connector.utility.class.dir}" includes="**/*.class" excludes="**/*.xml" prefix="${connector.utility.package}" />
+			</jar>
+		</target>
+
+	<target name="main" description="Main target" depends="clean,archive-plugins,sga,sau,lync,ssff,jar-adapters,jar-transform,jar-validation">
+	</target>
+
+</project>

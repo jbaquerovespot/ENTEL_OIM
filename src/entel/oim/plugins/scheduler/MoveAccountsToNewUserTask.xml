@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheduledTasks xmlns="http://xmlns.oracle.com/oim/scheduler">
+    <task>
+        <name>Move Account To New User Task</name>
+        <class>entel.oim.plugins.scheduler.MoveAccountsToNewUserTask</class>
+        <description>Task that executes the move of an account to another user</description>
+        <retry>5</retry>
+        <parameters>
+            <string-param required="true" encrypted="false" helpText="OIU Key">OIU Key</string-param>
+            <string-param required="true" encrypted="false" helpText="USR Key">USR Key</string-param>
+        </parameters>
+    </task>
+</scheduledTasks>

@@ -1,0 +1,37 @@
+<eventhandlers
+	xsi:schemaLocation="http://www.oracle.com/schema/oim/platform/kernel orchestration-handlers.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.oracle.com/schema/oim/platform/kernel">
+
+	<action-handler entity-type="User" operation="CREATE"
+		class="entel.oim.plugins.eventhandler.AddEntelAttributes" name="AddEntelAttributes"
+		stage="preprocess" order="LAST" sync="TRUE" />
+	<!-- cambiar a create -->
+	<!-- <action-handler entity-type="User" operation="MODIFY" class="entel.oim.plugins.eventhandler.CreateRemedyTickets" 
+		name="CreateRemedyTickets" stage="postprocess" order="1000" sync="TRUE" /> -->
+	<action-handler entity-type="User" operation="CREATE"
+		class="entel.oim.plugins.eventhandler.UserCreationNotification" name="UserCreationNotification"
+		stage="postprocess" order="LAST" sync="FALSE" />
+
+	<!--<action-handler entity-type="User" operation="CREATE"
+		class="entel.oim.plugins.eventhandler.UpdateSuccessFactorsLogin" name="UpdateSuccessFactorsLogin"
+		stage="postprocess" order="LAST" sync="FALSE" />-->
+ 
+    <!-- 
+    <action-handler entity-type="User" operation="MODIFY"
+		class="entel.oim.plugins.eventhandler.UpdateADAccounts" name="UpdateADAccounts"
+		stage="postprocess" order="LAST" sync="TRUE" />
+
+	<action-handler entity-type="User" operation="MODIFY"
+		class="entel.oim.plugins.eventhandler.UpdateADExternalAccounts" name="UpdateADExtAccounts"
+		stage="postprocess" order="LAST" sync="TRUE" />
+	
+	<action-handler entity-type="User" operation="MODIFY"
+		class="entel.oim.plugins.eventhandler.UpdateExchangeAccounts" name="UpdateExcAccounts"
+		stage="postprocess" order="LAST" sync="TRUE" />
+	-->	
+
+	<action-handler entity-type="User" operation="MODIFY"
+		class="entel.oim.plugins.eventhandler.UpdateUsrAttrsInAccounts" name="UpdateUsrAttrsInAccounts"
+		stage="postprocess" order="LAST" sync="FALSE" />
+
+</eventhandlers>

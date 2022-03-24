@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheduledTasks xmlns="http://xmlns.oracle.com/oim/scheduler">
+    <task>
+        <name>Custom Users With Roles Lookups Reconciliation</name>
+        <class>entel.oim.plugins.scheduler.CustomLookupUsersRoleTask</class>
+        <description>Task that executes the custom users with roles lookups</description>
+        <retry>5</retry>
+        <parameters>
+            <string-param required="true" encrypted="false" helpText="Role to find">Role</string-param>
+            <string-param required="true" encrypted="false" helpText="Lookup Definition Code">Lookup Definition</string-param>
+        </parameters>
+    </task>
+</scheduledTasks>

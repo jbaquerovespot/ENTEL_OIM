@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oimplugins>
+	<plugins pluginpoint="oracle.iam.identity.usermgmt.api.UserNamePolicy">
+	 	<plugin pluginclass="entel.oim.plugins.namegenerator.CustomUsernamePolicy" version="1.0" name="CustomUsernamePolicy"/>
+	 	<!--<plugin pluginclass="entel.oim.plugins.namegenerator.NewCustomUsernamePolicy" version="1.0" name="NewCustomUsernamePolicy"/>-->
+	</plugins>
+	<plugins pluginpoint="oracle.iam.ssointg.impl.handlers.account.commonname.plugins.api.CommonNamePolicy">
+        <plugin pluginclass="entel.oim.plugins.namegenerator.CustomCommonNamePolicy" version="1.0" name="CustomCommonNamePolicy"/>
+    </plugins>
+	<plugins pluginpoint="oracle.iam.platform.kernel.spi.EventHandler">
+		<plugin pluginclass="entel.oim.plugins.eventhandler.UserCreationNotification" version="1.0" name="UserCreationNotification" />
+		<plugin pluginclass="entel.oim.plugins.eventhandler.AddEntelAttributes" version="1.0" name="AddEntelAttributes" />
+		<!--<plugin pluginclass="entel.oim.plugins.eventhandler.UpdateSuccessFactorsLogin" version="1.0" name="UpdateSuccessFactorsLogin" />-->
+		<!--<plugin pluginclass="entel.oim.plugins.eventhandler.UpdateADAccounts" version="1.0" name="UpdateADAccounts" />
+		<plugin pluginclass="entel.oim.plugins.eventhandler.UpdateADExternalAccounts" version="1.0" name="UpdateADExtAccounts" />
+		<plugin pluginclass="entel.oim.plugins.eventhandler.UpdateExchangeAccounts" version="1.0" name="UpdateExcAccounts" />
+		<plugin pluginclass="entel.oim.plugins.eventhandler.CreateRemedyTickets" version="1.0" name="CreateRemedyTickets" /> -->
+		<plugin pluginclass="entel.oim.plugins.eventhandler.UpdateUsrAttrsInAccounts" version="1.0" name="UpdateUsrAttrsInAccounts" />
+	</plugins> 
+ 	<plugins pluginpoint="oracle.iam.scheduler.vo.TaskSupport">
+		<plugin pluginclass="entel.oim.plugins.scheduler.TrustedUserDeleteReconciliationTask" version="1.0" name="TrustedUserDeleteReconciliationTask" />
+		<plugin pluginclass="entel.oim.plugins.scheduler.UsageControlTask" version="1.0" name="UsageControlTask" />
+		<plugin pluginclass="entel.oim.plugins.scheduler.AbsenceControlTask" version="1.0" name="AbsenceControlTask" />
+		<plugin pluginclass="entel.oim.plugins.scheduler.CustomLookupsSuccessFactorsReconciliationTask" version="1.0" name="CustomLookupsSuccessFactorsReconciliationTask" />
+		<plugin pluginclass="entel.oim.plugins.scheduler.CustomPicklistLookupsSuccessFactorsReconciliationTask" version="1.0" name="CustomPicklistLookupsSuccessFactorsReconciliationTask" />
+		<plugin pluginclass="entel.oim.plugins.scheduler.CustomLookupsFromFileReconciliationTask" version="1.0" name="CustomLookupsFromFileReconciliationTask" />
+		<plugin pluginclass="entel.oim.plugins.scheduler.CustomLookupUsersRoleTask" version="1.0" name="CustomLookupUsersRoleTask" />
+		<plugin pluginclass="entel.oim.plugins.scheduler.CheckInfoExternTask" version="1.0" name="CheckInfoExternTask" />
+		<plugin pluginclass="entel.oim.plugins.scheduler.MoveDisabledADUsersTask" version="1.0" name="MoveDisabledADUsersTask" />
+		<plugin pluginclass="entel.oim.plugins.scheduler.UpdateExcelTemplateTask" version="1.0" name="UpdateExcelTemplateTask" />
+		<plugin pluginclass="entel.oim.plugins.scheduler.InternalControlListTask" version="1.0" name="InternalControlListTask" />
+		<plugin pluginclass="entel.oim.plugins.scheduler.UpdateUserEmailAccountSuccessFactorsTask" version="1.0" name="UpdateUserEmailAccountSuccessFactorsTask" />
+		<plugin pluginclass="entel.oim.plugins.scheduler.UserBulkLoadTask" version="1.1" name="UserBulkLoadTask"/>
+		<plugin pluginclass="entel.oim.plugins.scheduler.WorkaroundRefreshRoleMembershipTask" version="1.0" name="WorkaroundRefreshRoleMembershipTask"/>
+		<plugin pluginclass="entel.oim.plugins.scheduler.MoveAccountsToNewUserTask" version="1.0" name="MoveAccountsToNewUserTask"/>
+		<plugin pluginclass="entel.oim.plugins.scheduler.AssignRevokeAdminRolesTask" version="1.0" name="AssignRevokeAdminRolesTask"/>
+		<plugin pluginclass="entel.oim.plugins.scheduler.NewUserNotificationTask" version="1.0" name="NewUserNotificationTask"/>
+		<!--plugin pluginclass="entel.oim.plugins.scheduler.SiebelUpdatePositionTask" version="1.0" name="SiebelUpdatePositionTask"/> -->
+	</plugins>
+	<plugins pluginpoint="oracle.iam.request.plugins.RequestDataValidator">
+       <plugin pluginclass="entel.oim.plugins.validator.CreateUserCustomValidator" version="1.0"  name="CreateUserCustomValidator"/>
+    </plugins>
+    <plugins pluginpoint="oracle.iam.notification.impl.NotificationEventResolver">  
+		<plugin pluginclass="entel.oim.plugins.notifications.AbsenceControlResolver" version="1.0" name="AbsenceControlResolver" />
+		<plugin pluginclass="entel.oim.plugins.notifications.CheckInfoExternResolver" version="1.0" name="CheckInfoExternResolver" />
+		<plugin pluginclass="entel.oim.plugins.notifications.MoveDisabledADUsersResolver" version="1.0" name="MoveDisabledADUsersResolver" />
+		<plugin pluginclass="entel.oim.plugins.notifications.TrustedUserDeleteReconciliationResolver" version="1.0" name="TrustedUserDeleteReconciliationResolver" />
+		<plugin pluginclass="entel.oim.plugins.notifications.UsageControlResolver" version="1.0" name="UsageControlResolver" />
+		<plugin pluginclass="entel.oim.plugins.notifications.DisabledOIMIdentitiesResolver" version="1.0" name="DisabledOIMIdentitiesResolver" />
+		<plugin pluginclass="entel.oim.plugins.notifications.UserBulkLoadResolver" version="1.0" name="UserBulkLoadResolver" />
+		<plugin pluginclass="entel.oim.plugins.notifications.TrustedUserMassiveDeleteReconciliationResolver" version="1.0" name="TrustedUserMassiveDeleteReconciliationResolver" />
+		<plugin pluginclass="entel.oim.plugins.notifications.NewUserNotificationResolver" version="1.0" name="NewUserNotificationResolver" />
+	</plugins>  
+</oimplugins>

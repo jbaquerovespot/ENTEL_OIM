@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheduledTasks xmlns="http://xmlns.oracle.com/oim/scheduler">
+    <task>
+        <name>Update Primary Position in Siebel Task</name>
+        <class>entel.oim.plugins.scheduler.SiebelUpdatePositionTask</class>
+        <description>Task that executes the verification of the primary position attribute for Siebel Roles assigned</description>
+        <retry>0</retry>
+        <parameters>
+            <string-param required="true" encrypted="false" helpText="Roles Mapping">Roles Mapping</string-param>
+            <string-param required="true" encrypted="false" helpText="Resource Name">Resource Name</string-param>
+            <string-param required="true" encrypted="false" helpText="Parameter Name">Parameter Name</string-param>
+            <string-param required="true" encrypted="false" helpText="Attribute Names">Attribute Names</string-param>
+            <string-param required="true" encrypted="false" helpText="LookUp Name">LookUp Name</string-param>
+        </parameters>
+    </task>
+</scheduledTasks>
