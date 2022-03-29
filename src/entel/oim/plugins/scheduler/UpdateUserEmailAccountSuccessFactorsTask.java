@@ -100,7 +100,7 @@ public class UpdateUserEmailAccountSuccessFactorsTask extends TaskSupport {
 				logger.finer("Code: " + code + " | Decode: " + decode);
 
 				logger.fine("Checking if user is active in Success Factors");
-				String filterUser = service + "?$filter=userId%20eq%20'" + code + "'";
+				String filterUser = service + "?$expand=empInfo/jobInfoNav&$filter=(userId eq '" + code + "' and status in 't','f')&asOfDate=9999-12-31";
 				String usersXML = SuccessFactorsConnection.getServiceResponse(itResourceDetails, filterUser,
 						accessToken);
 				logger.finest("Response from Success Factors: " + usersXML);
