@@ -30,6 +30,8 @@ import org.dom4j.io.SAXReader;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+
 //import Thor.API.tcResultSet;
 //import Thor.API.Operations.tcLookupOperationsIntf;
 //import oracle.iam.platform.Platform;
@@ -288,6 +290,9 @@ public class SuccessFactorsConnection {
 									 itResourceDetails.get("proxyPassword"));
 		logger.finest("iDP service returned: " + idpResponse);
 		
+		/*Test*/
+		System.out.println("idpResponse : " + idpResponse);
+		
 		logger.fine("Calling the Token Service from Success Factors");
 		String tokenResponse = callGenerateToken(	itResourceDetails.get("authenticationServerUrl"),
 													itResourceDetails.get("companyId"),
@@ -300,6 +305,9 @@ public class SuccessFactorsConnection {
 													itResourceDetails.get("proxyUser"),
 													itResourceDetails.get("proxyPassword"));
 		logger.finest("Token service returned: " + idpResponse);
+		
+		/*Test*/
+		System.out.println("tokenResponse : " + tokenResponse);
 		
 		String accessToken = getAccessToken(tokenResponse);
 		logger.finest("Access token: " + accessToken);
@@ -321,6 +329,7 @@ public class SuccessFactorsConnection {
     	logger.entering(className, "getPrivateKeyFromCertificate");
     	String privateKey = null;
 		
+    	
     	try {
     		
     		logger.fine("Reading the certificate file");
@@ -329,16 +338,22 @@ public class SuccessFactorsConnection {
 			
 			logger.fine("Extracting the private key string");
 			privateKey = (privateKey.substring(privateKey.indexOf("-----BEGIN ENCRYPTED PRIVATE KEY-----"),privateKey.indexOf("-----END ENCRYPTED PRIVATE KEY-----"))).replace("-----BEGIN ENCRYPTED PRIVATE KEY-----", "").trim();
+			  
+		
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 			logger.log(Level.SEVERE, "getPrivateKeyFromCertificate - Unexpected error", e);
+			
+			/* test */
+			System.out.println("privateKey" + privateKey);
 		}
     		  
     	logger.exiting(className, "getPrivateKeyFromCertificate",privateKey);
 		return privateKey;
-    		  
+		
     }
+    
     
     
     /**

@@ -56,6 +56,9 @@ public class UpdateUserEmailAccountSuccessFactorsTask extends TaskSupport {
 					serviceContactInfo);
 
 			logger.exiting(className, "execute");
+			
+			/* test */
+			System.out.println(itResource + service + serviceContactInfo + lookupUserLoginName + lookupUserEmailName);
 
 		} catch (Exception e) {
 			// Do not stop the task if an exception occurs.
@@ -88,6 +91,9 @@ public class UpdateUserEmailAccountSuccessFactorsTask extends TaskSupport {
 		logger.entering(className, "updateUserAttributeSuccessFactorsUsername", lookupName);
 		String usernameAttr = "username";
 		String loginMethodAttr = "loginMethod";
+		
+		
+		
 		try {
 			logger.fine("Getting lookup values from  " + lookupName);
 			tcResultSet rs = lookupOps.getLookupValues(lookupName);
@@ -103,6 +109,10 @@ public class UpdateUserEmailAccountSuccessFactorsTask extends TaskSupport {
 				String filterUser = service + "?$expand=empInfo/jobInfoNav&$filter=(userId eq '" + code + "' and status in 't','f')&asOfDate=9999-12-31";
 				String usersXML = SuccessFactorsConnection.getServiceResponse(itResourceDetails, filterUser,
 						accessToken);
+				
+				/* test */
+				System.out.println("service + code :" + service + code);
+				
 				logger.finest("Response from Success Factors: " + usersXML);
 
 				logger.fine("Constructing user id list");
@@ -127,6 +137,8 @@ public class UpdateUserEmailAccountSuccessFactorsTask extends TaskSupport {
 						logger.log(Level.SEVERE, "Unable to update the " + usernameAttr + " and " + loginMethodAttr
 								+ " of the User " + code + " in Success Factors");
 						continue;
+						
+					
 					}
 
 				}
@@ -196,7 +208,9 @@ public class UpdateUserEmailAccountSuccessFactorsTask extends TaskSupport {
 				}
 
 				logger.fine("Checking if user is active in Success Factors");
-				String filterUser = service + "?$filter=userId%20eq%20'" + code + "'";
+				
+				//String filterUser = service + "?$filter=userId%20eq%20'" + code + "'";
+				String filterUser = service + "?$expand=empInfo/jobInfoNav&$filter=(userId eq '" + code + "' and status in 't','f')&asOfDate=9999-12-31";
 				String usersXML = SuccessFactorsConnection.getServiceResponse(itResourceDetails, filterUser,
 						accessToken);
 				logger.finest("Response from Success Factors: " + usersXML);
